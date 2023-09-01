@@ -2,7 +2,7 @@ import { Button, Flex, Box } from "@chakra-ui/react";
 import React from "react";
 import FormInput from "../../components/formComponents/FormInput";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import * as Yup from "Yup"
 import { PageNumbers } from "../../interface/home";
 import { IJobDetails } from "../../interface/forms";
 import { useData } from "./DataProvider";
