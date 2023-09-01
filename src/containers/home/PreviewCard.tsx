@@ -1,5 +1,7 @@
 import { Box, Flex, Text, Grid } from "@chakra-ui/react";
 import React from "react";
+import { useFormik } from "formik";
+import { useData } from "./DataProvider";
 import {
   IInterViewSettings,
   IJobDetails,
@@ -50,6 +52,10 @@ const PreviewCard: React.FC<{
   jobDetails?: IJobDetails;
   interviewSettings?: IInterViewSettings;
 }> = ({ requisitionDetails, jobDetails, interviewSettings }) => {
+
+  let updatedContext = useData();
+
+    
   return (
     <Box p="1rem">
       <Box borderRadius="10px" bgColor="gray.100" height="fit-content">
@@ -80,14 +86,15 @@ const PreviewCard: React.FC<{
               alignItems="center"
             >
               <Text fontSize="0.9rem" fontWeight="500">
-                {requisitionDetails?.requisitionTitle}
+                {/* {requisitionDetails?.requisitionTitle} */}
+                {updatedContext?.state.requisitionDetails?.requisitionTitle}
               </Text>
               <Flex justifyContent="space-around" alignItems="center">
                 <Text fontSize="0.8rem" mr="0.4rem" fontWeight="200" as="p">
                   OPENINGS
                 </Text>
                 <Text fontSize="1rem" fontWeight="bold" as="span">
-                  {requisitionDetails?.noOfOpenings}
+                  {updatedContext?.state.requisitionDetails?.noOfOpenings}
                 </Text>
               </Flex>
             </Flex>
@@ -113,9 +120,9 @@ const PreviewCard: React.FC<{
             />
           </DataCard>
           <DataCard title="Job Detail">
-            <KeyValue title="Job Title" value={jobDetails?.jobTitle} />
-            <KeyValue title="Job Details" value={jobDetails?.jobDetails} />
-            <KeyValue title="Job Location" value={jobDetails?.jobLocation} />
+            <KeyValue title="Job Title" value={updatedContext?.state?.jobDetails?.jobTitle} />
+            <KeyValue title="Job Details" value={updatedContext?.state?.jobDetails?.jobDetails} />
+            <KeyValue title="Job Location" value={updatedContext?.state?.jobDetails?.jobLocation} />
           </DataCard>
           <DataCard title="Interview Settings">
             <KeyValue

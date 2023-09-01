@@ -1,4 +1,5 @@
 import { Button, Flex, Box } from "@chakra-ui/react";
+import { useData } from "./DataProvider";
 import React from "react";
 import FormInput from "../../components/formComponents/FormInput";
 import FormSelect from "../../components/formComponents/FormSelect";
@@ -43,6 +44,28 @@ const RequisitionDetailsForm: React.FC<{
     },
   });
 
+  let contextValue = useData();
+
+  const handleInput = (e: any) => {
+    if (e?.target?.name === "requisitionTitle") {
+      contextValue?.setState((prevValues) => ({
+        ...prevValues,
+        requisitionDetails: {
+          ...prevValues.requisitionDetails,
+          requisitionTitle: e.target.value,
+        },
+      }));
+    } else if (e?.target?.name === "noOfOpenings") {
+      contextValue?.setState((prevValues) => ({
+        ...prevValues,
+        requisitionDetails: {
+          ...prevValues.requisitionDetails,
+          noOfOpenings: parseInt(e.target.value),
+        },
+      }));
+    }
+  };
+
   return (
     <Box width="100%" as="form" onSubmit={handleSubmit as any}>
       <Box width="100%">
@@ -50,7 +73,10 @@ const RequisitionDetailsForm: React.FC<{
           label="Requisition Title"
           placeholder="Enter requisition title"
           name="requisitionTitle"
-          onChange={handleChange}
+          onChange={(e) => {
+            handleChange(e);
+            handleInput(e);
+          }}
           onBlur={handleBlur}
           value={values?.requisitionTitle}
           error={errors?.requisitionTitle}
@@ -60,7 +86,10 @@ const RequisitionDetailsForm: React.FC<{
           label="Number of openings"
           placeholder="Enter number of openings"
           name="noOfOpenings"
-          onChange={handleChange}
+          onChange={(e) => {
+            handleChange(e);
+            handleInput(e);
+          }}
           onBlur={handleBlur}
           value={values?.noOfOpenings}
           error={errors?.noOfOpenings}
