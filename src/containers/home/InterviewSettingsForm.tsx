@@ -1,7 +1,7 @@
 import { Button, Flex, Box } from "@chakra-ui/react";
 import React from "react";
 import FormSelect from "../../components/formComponents/FormSelect";
-import * as Yup from "Yup"
+import * as Yup from "yup"
 import { useFormik } from "formik";
 import { PageNumbers } from "../../interface/home";
 import { IInterViewSettings } from "../../interface/forms";
