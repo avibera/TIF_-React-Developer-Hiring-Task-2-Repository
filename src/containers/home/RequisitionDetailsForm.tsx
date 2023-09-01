@@ -4,7 +4,7 @@ import React from "react";
 import FormInput from "../../components/formComponents/FormInput";
 import FormSelect from "../../components/formComponents/FormSelect";
 import { useFormik } from "formik";
-import * as Yup from "Yup"
+import * as Yup from "yup"
 import { PageNumbers } from "../../interface/home";
 import { IRequisitionDetails } from "../../interface/forms";
 import { genderOptions, urgencyOptions } from "./constants";
